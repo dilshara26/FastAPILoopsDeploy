@@ -49,11 +49,14 @@ async def get_applications():
 async def get_jobs():
     respone = await getJobs()
     return respone
+# post jobs
 
 @app.post("/api/jobs")
 async def post_jobs(jobs:Job):
     response = await createJob(jobs.dict())
     if response:
         return response
+
+
 
 
