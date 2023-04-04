@@ -2,12 +2,14 @@ from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
 from src.dataSchema import Application
+from src.dataSchema import Job
 from src.main import ModelMain
 
 from src.databaseCont import (
     createApplication,
     getAllApplications,
-    getJobs
+    getJobs,
+    createJob
 
 )
 
@@ -47,3 +49,11 @@ async def get_applications():
 async def get_jobs():
     respone = await getJobs()
     return respone
+
+@app.post("/api/jobs")
+async def post_jobs(jobs:Job):
+    response = await createJob(jobs.dict())
+    if response:
+        return response
+
+
