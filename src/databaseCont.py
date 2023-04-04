@@ -53,4 +53,9 @@ async def getJobs():
 
     return allJobs
 
+async def createJob(jobs):
+    document = jobs
+    result = await jobCollection.insert_one(document)
+    return result
+
 
